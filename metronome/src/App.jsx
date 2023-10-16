@@ -1,21 +1,26 @@
 import { useState } from 'react'
+
 import './App.css'
+// import clickSound from "src/assets/clickSound.wav"
+// import decodeAudio from 'audio-decode'
+// import buffer from 'audio-lena/mp3'
+
+
 
 function App() {
 
-  const [bpm , setBPM] = useState(40)
+ let [bpm , setBPM] = useState(40)
 
-  const playMetronome = () => {
-    const click = new Audio('metronome/src/sounds');
-    click.play();
-    Math.round(60000 / bpm);
+  let play = () => {
+    new Audio(clickSound).play()
   }
-  // const bpmIncrement = (bpm) => {
-  //   setBPM(bpm + 5);
+
+  // const playMetronome = () => {
+  //   const click = new Audio('metronome/src/assets/sounds/clickSound.wav');
+  //   click.play();
+  //   Math.round(60000 / bpm);
   // }
-  // const bpmDecrement = (bpm) => {
-  //   setBPM(bpm - 5);
-  // }
+  
   
 
   // document.getElementById('start').addEventListener('click', playMetronome);
@@ -29,17 +34,24 @@ function App() {
       <h1>Metronome</h1>
       <div className="card">
         <p>{bpm}</p>
-        
-        <button id="+" onClick={setBPM(bpm)}>
+        <button onClick={() => setBPM(bpm + 5)}>
           +
         </button>
-        <button id="-" onClick={setBPM(bpm)}>
+        <button onClick={() => setBPM(bpm - 5)}>
           -
         </button>
-
+        <button onClick={() => play(clickSound)}>
+          Play
+        </button>
+        {/* <button id="+" onClick={bpmIncrement}>
+          +
+        </button>
+        <button id="-" onClick={bpmDecrement}>
+          -
+        </button>
         <button id="start" onClick={playMetronome()}>
         Start
-        </button>
+        </button> */}
         
       </div>
       
